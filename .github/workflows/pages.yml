@@ -1,0 +1,22 @@
+# Publishes aurelia.jirulabs.com. The content (images included) lives in the private repo
+# nyakojiru/aurelia-contenido; this repo only calls trazos' reusable workflow, which reads it
+# with a read-only deploy key (secret CONTENT_KEY). Runs when the content asks for it
+# (admin save, kDrive sync) or by hand.
+name: Pages
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  site:
+    uses: nyakojiru/trazos/.github/workflows/site.yml@v0.12.0
+    with:
+      content: nyakojiru/aurelia-contenido
+      trazos_ref: v0.12.0
+    secrets:
+      content_key: ${{ secrets.CONTENT_KEY }}
