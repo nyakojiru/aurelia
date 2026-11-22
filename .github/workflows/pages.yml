@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   site:
-    uses: jiru-labs/trazos/.github/workflows/site.yml@v0.14.0
+    uses: jiru-labs/trazos/.github/workflows/site.yml@v0.15.0
     with:
       content: nyakojiru/aurelia-contenido
       trazos_ref: v0.14.0
